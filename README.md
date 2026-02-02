@@ -15,6 +15,8 @@
 
 **[💼 LinkedIn](https://linkedin.com/in/sahilkamalny)** · **[🌍 Portfolio](https://sahilkamal.dev)** · **[📧 Contact](mailto:sahilkamal.dev@gmail.com)**
 
+**[📖 Architecture](docs/ARCHITECTURE.md)** · **[⌨️ Commands](docs/COMMANDS.md)** · **[✨ Features](docs/FEATURES.md)**
+
 </div>
 
 ---
@@ -150,6 +152,16 @@ kairo/
 - 💼 LinkedIn: [linkedin.com/in/sahilkamalny](https://linkedin.com/in/sahilkamalny)
 - 📧 Email: [sahilkamal.dev@gmail.com](mailto:sahilkamal.dev@gmail.com)
 - 🐙 GitHub: [github.com/sahilkamalny](https://github.com/sahilkamalny)
+
+---
+
+## 📚 Related Documentation
+
+| Document | Description |
+|----------|-------------|
+| **[Architecture](docs/ARCHITECTURE.md)** | System design, module organization, data flow |
+| **[Commands](docs/COMMANDS.md)** | Complete command reference with examples |
+| **[Features](docs/FEATURES.md)** | Deep dive into features and implementation |
 
 ---
 
