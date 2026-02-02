@@ -1,6 +1,6 @@
 <div align="center">
 
-# ⌘ KAIRO
+# KAIRO
 
 ### Retro-Futuristic Interactive OS Shell
 
