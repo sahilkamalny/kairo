@@ -21,16 +21,6 @@
 
 ---
 
-## 📚 Documentation
-
-| Document | Description |
-|----------|-------------|
-| **[Architecture](docs/ARCHITECTURE.md)** | System design, module organization, data flow |
-| **[Commands](docs/COMMANDS.md)** | Complete command reference with examples |
-| **[Features](docs/FEATURES.md)** | Deep dive into features and implementation |
-
----
-
 ## ✨ Features
 
 ### 🎨 Immersive Retro-Futuristic Interface
@@ -155,16 +145,6 @@ kairo/
 
 ---
 
-## 📚 Related Documentation
-
-| Document | Description |
-|----------|-------------|
-| **[Architecture](docs/ARCHITECTURE.md)** | System design, module organization, data flow |
-| **[Commands](docs/COMMANDS.md)** | Complete command reference with examples |
-| **[Features](docs/FEATURES.md)** | Deep dive into features and implementation |
-
----
-
 ## 📄 License
 
 MIT License - See [LICENSE](LICENSE) for details.
@@ -173,8 +153,12 @@ MIT License - See [LICENSE](LICENSE) for details.
 
 <div align="center">
 
-**© 2026 Sahil Kamal. All Rights Reserved.**
+### 📖 Additional Documentation
 
-*Built with 💜 and Python*
+**[Architecture →](docs/ARCHITECTURE.md)** · **[Commands →](docs/COMMANDS.md)** · **[Features →](docs/FEATURES.md)**
+
+---
+
+**© 2026 Sahil Kamal**
 
 </div>
