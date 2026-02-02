@@ -9,6 +9,8 @@ sounds_dir = os.path.join(os.getcwd(), 'sounds')
 data_dir = os.path.join(os.getcwd(), 'data')
 
 # Bundle resources
+# sounds/ - bundled with app (used by get_app_path())
+# data/ - template users.dat copied to AppData on first run
 datas = []
 if os.path.exists(sounds_dir):
     datas.append((sounds_dir, 'sounds'))

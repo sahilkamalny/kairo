@@ -2986,12 +2986,12 @@ class VariableManager:
     @staticmethod
     def get_user_root(username):
         """Get the user's root directory path"""
-        return os.path.join(Sound.base_path, "data", "users", username)
+        return os.path.join(get_user_data_path(), "users", username)
     
     @staticmethod
     def get_variables_file(username):
         """Get the path to the user's variables file"""
-        variables_dir = os.path.join(Sound.base_path, "data", "variables")
+        variables_dir = os.path.join(get_user_data_path(), "variables")
         if not os.path.exists(variables_dir):
             os.makedirs(variables_dir)
         return os.path.join(variables_dir, f"{username}.var")
@@ -3215,7 +3215,7 @@ class System:
     @staticmethod
     def create_user_directory(username):
         """Create user directory if it doesn't exist"""
-        user_dir = os.path.join(Sound.base_path, "data", "users", username)
+        user_dir = os.path.join(get_user_data_path(), "users", username)
         if not os.path.exists(user_dir):
             os.makedirs(user_dir)
         return user_dir
@@ -3246,8 +3246,33 @@ class System:
             global last_command_result
             last_command_result = ("NULL", DataType.NULL)
 
+def get_app_path():
+    """Get the application's base directory (for bundled resources like sounds)."""
+    if getattr(sys, 'frozen', False) and hasattr(sys, '_MEIPASS'):
+        return sys._MEIPASS
+    return os.path.dirname(os.path.abspath(__file__))
+
+def get_user_data_path():
+    """Get the user data directory (cross-platform).
+    
+    Returns:
+        Windows: %APPDATA%/Kairo
+        macOS: ~/Library/Application Support/Kairo
+        Linux: ~/.local/share/Kairo
+    """
+    if sys.platform == 'win32':
+        base = os.environ.get('APPDATA', os.path.expanduser('~'))
+    elif sys.platform == 'darwin':
+        base = os.path.expanduser('~/Library/Application Support')
+    else:  # Linux and other Unix-like
+        base = os.environ.get('XDG_DATA_HOME', os.path.expanduser('~/.local/share'))
+    
+    data_dir = os.path.join(base, 'Kairo')
+    os.makedirs(data_dir, exist_ok=True)
+    return data_dir
+
 class Sound:
-    base_path = "C:\\Programming Projects\\Personal Projects\\Kairo"
+    base_path = get_app_path()
 
     @staticmethod
     def preload_sounds():
@@ -6478,7 +6503,21 @@ def main():
 
     SplashScreen.show()
     
-    users_file = f"{Sound.base_path}\\data\\users.dat"
+    # User data lives in platform-specific location (e.g., %APPDATA%/Kairo on Windows)
+    user_data_dir = get_user_data_path()
+    users_file = os.path.join(user_data_dir, "users.dat")
+    
+    # On first run, copy the template users.dat from the app bundle
+    if not os.path.exists(users_file):
+        template_file = os.path.join(get_app_path(), "data", "users.dat")
+        if os.path.exists(template_file):
+            shutil.copy(template_file, users_file)
+        else:
+            # Create a default users file with guest account
+            default_users = {"users": [{"username": "guest", "password": "guest"}]}
+            with open(users_file, 'w') as f:
+                json.dump(default_users, f, indent=4)
+    
     users = UserManager.load_users(users_file)
     
     while True:  # Loop to return to menu after create/remove

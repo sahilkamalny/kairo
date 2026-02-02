@@ -1,0 +1,25 @@
+# Build artifacts
+build/
+dist/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+
+# PyInstaller
+*.manifest
+*.spec
+
+# User-specific data (stored in AppData on Windows, not in repo)
+data/users/
+data/variables/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
