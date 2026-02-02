@@ -1,3 +1,16 @@
+"""
+Kairo - Interactive OS Shell
+A retro-futuristic terminal environment with file management and utilities.
+
+This file contains the main application logic. Core utilities have been
+refactored into the kairo package for better organization:
+- kairo.config: Path utilities
+- kairo.state: Global state management
+- kairo.models: Data classes (User, Variable, DataType)
+- kairo.core: System utilities (Sound, System, TerminalState)
+- kairo.managers: Business logic (UserManager, VariableManager)
+"""
+
 import sys
 import datetime
 import time
@@ -13,6 +26,13 @@ from colorama import init, Fore, Style
 from playsound import playsound
 from enum import Enum
 from typing import List, Tuple
+
+# Import from kairo package (refactored modules)
+from kairo.config import get_app_path, get_user_data_path
+from kairo.models.variable import DataType, Variable
+from kairo.models.user import User
+from kairo.models.text import Message, MenuOption, Text
+import kairo.state as state
 
 # Import platform-specific modules for character input
 if os.name == 'nt':  # Windows
@@ -32,7 +52,7 @@ else:  # Unix-like
     import select
     import curses
 
-# Add after the existing imports, before System Messages
+# Optional web browser dependencies
 try:
     import requests
     from bs4 import BeautifulSoup
@@ -46,15 +66,6 @@ except ImportError:
     requests = None
     BeautifulSoup = None
     html2text = None
-
-# System Messages
-class Message:
-    MENU = "█▓▒░ SYSTEM MENU ░▒▓█"
-    BOOT = "█▓▒░ BOOTING SYSTEM ░▒▓█"
-    SHUTDOWN = "\n█▓▒░ SYSTEM SHUTDOWN ░▒▓█"
-    MALFUNCTION = "\n░▒▓█ SYSTEM MALFUNCTION █▓▒░"
-    GLITCH = "░▒▓█ ┊⧗͡͠҉͘͢͏̀҉G͏̴L҉̷͘͞͏̀͞͡I̷͡҉̴T̵C͟H͜ █▓▒░"
-    ERROR = "⊠⊡⧗͡҉⧛͜⚠͠ ⬢ ERROR C͏͝O̷͏D͘E: 0xA͠C4D32 ⬢ ⚠⧛⧗⊡⊠\nU̴͢S̸̛E̶͝R̷͝ ̷͘D̵͟O̸͡E̸̛S̶͟ ̵͡N̶̸O̵͜T̵͡ ̴͜Ę̵X̵͢I̵̡S̶͝T̷͡\n▒▓▒▒͠▓▒▒░▒▓ ▒▒░▓▒░░▓▒▒▒▒▒▓▒▒▒▒▒▒▒▒▒▓▒▒▒▒▒▒▒▒▒▓▒▒▒▒ ▒▒▒▒▓▒▒▒▒▒▒▒▒▒▓▒▒▒▒▒▒▒▒▒▓▒▒▒▒▒▒▒▒▒▓░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░"
 
 class SplashScreen:
     @staticmethod
@@ -2873,34 +2884,8 @@ def open_curses_editor(filepath: str) -> bool:
         print(f"Editor error: {e}")
         return False
 
-class Text:
-    INDENT = 3 * " "
-
-class MenuOption(Enum):
-    EXISTING = 0
-    NEW = 1
-    REMOVE = 2
-
-class DataType(Enum):
-    NUMBER = "number"
-    STRING = "string"
-    DIRECTORY = "directory"
-    FILE = "file"
-    NULL = "null"
-
-class Variable:
-    def __init__(self, name, value, var_type, is_persistent=True):
-        self.name = name
-        self.value = value
-        self.type = var_type
-        self.is_persistent = is_persistent
-
-class User:
-    def __init__(self, username, password):
-        self.username = username
-        self.password = password
-
-# Global variables
+# Global variables - aliases to state module for backward compatibility
+# (These will be migrated to use state module directly in future updates)
 current_directory = ""
 last_command_result = None
 session_variables = {}  # For # variables

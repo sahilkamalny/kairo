@@ -30,15 +30,19 @@ echo.
 echo # Get resource directories
 echo sounds_dir = os.path.join^(os.getcwd^(^), 'sounds'^)
 echo data_dir = os.path.join^(os.getcwd^(^), 'data'^)
+echo kairo_dir = os.path.join^(os.getcwd^(^), 'kairo'^)
 echo.
 echo # Bundle resources
 echo # sounds/ - bundled with app ^(used by get_app_path^(^)^)
 echo # data/ - template users.dat copied to AppData on first run
+echo # kairo/ - modular package components
 echo datas = []
 echo if os.path.exists^(sounds_dir^):
 echo     datas.append^(^(sounds_dir, 'sounds'^)^)
 echo if os.path.exists^(data_dir^):
 echo     datas.append^(^(data_dir, 'data'^)^)
+echo if os.path.exists^(kairo_dir^):
+echo     datas.append^(^(kairo_dir, 'kairo'^)^)
 echo.
 echo # All hidden imports
 echo hiddenimports = [
