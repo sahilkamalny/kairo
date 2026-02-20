@@ -23,3 +23,9 @@ data/variables/
 .idea/
 *.swp
 *.swo
+
+# OS
+.DS_Store
+
+# Environment variables
+.env
