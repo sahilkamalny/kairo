@@ -1,10 +1,10 @@
 <div align="center">
 
-# KAIRO
+# 📟 KAIRO
 
 ### Retro-Futuristic Interactive OS Shell
 
-🖥️ **Feature-Rich Terminal Environment** — *File management, utilities, and an immersive retro-futuristic TUI experience*
+*Functional programming, file management, system utilities, and an immersive retro-futuristic TUI experience*
 
 [![Python](https://img.shields.io/badge/Python-3.8+-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://python.org/)
 [![Curses](https://img.shields.io/badge/Curses-TUI-4B8BBE?style=for-the-badge&logo=gnu-bash&logoColor=white)](https://docs.python.org/3/library/curses.html)
