@@ -19,7 +19,7 @@
 
 ## Overview
 
-KAIRO is a cross-platform terminal application written in Python that emulates an interactive OS shell with a retro-futuristic aesthetic. It provides 40+ commands spanning file navigation, text editing, expression evaluation, persistent variables, and terminal web browsing — all rendered through a curses-based TUI with animated splash screens, a real-time status bar, and color-coded output. Multi-user authentication with per-user file directories is included out of the box. Portable Windows executables can be produced via PyInstaller.
+KAIRO is a cross-platform terminal application written in Python that emulates an interactive OS shell with a retro-futuristic aesthetic. It provides over 40 commands spanning file navigation, text editing, expression evaluation, persistent variables, and terminal web browsing — all rendered through a curses-based TUI with animated splash screens, a real-time status bar, and color-coded output. Multi-user authentication with per-user file directories is included out of the box. Portable Windows executables can be produced via PyInstaller.
 
 ---
 
